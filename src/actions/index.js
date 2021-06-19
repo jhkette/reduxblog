@@ -1,5 +1,6 @@
 // import _ from 'lodash';
 import jsonPlaceholder from "../apis/jsonplaceholder";
+import _ from 'lodash'
 
 // action creators must return PLAIN JAVASCRIPT OBJECTS WITH A TYPE PROPERTY.
 // This means no async/await. No return of a request to an api (ie a promise).
@@ -51,21 +52,21 @@ export const fetchPosts = () => async (dispatch) => {
 // fetchUser we create a new memoised version of the inner function. The way to do it is
 // to create a seperate memoised function _fetchUser as above and then call it
 
-// export const fetchUser = (id) => _.memoize(async (dispatch) => {
-//     const response = await jsonPlaceholder.get(`/users/${id}`);
+export const fetchUser = (id) => _.memoize(async (dispatch) => {
+    const response = await jsonPlaceholder.get(`/users/${id}`);
 
-//     dispatch({type: 'FETCH_USER', payload: response.data })
+    dispatch({type: 'FETCH_USER', payload: response.data })
     
-// })
+})
 
 /*---------------------------- ---------------------------------*/
 
 
 
-export const fetchUser = id => async dispatch => {
-    const response = await jsonPlaceholder.get(`/users/${id}`);
-    dispatch({type: 'FETCH_USER', payload: response.data })
-}
+// export const fetchUser = id => async dispatch => {
+//     const response = await jsonPlaceholder.get(`/users/${id}`);
+//     dispatch({type: 'FETCH_USER', payload: response.data })
+// }
 
 // we use both the dispatch and getState arguments here. 
 export const fetchPostsAndUsers = () => async (dispatch, getState) => {
